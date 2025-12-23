@@ -1,0 +1,28 @@
+com.example.simplechatapp
+│
+├── activities
+│   ├── SplashActivity.java
+│   ├── LoginActivity.java
+│   ├── RegisterActivity.java
+│   ├── UsersActivity.java
+│   ├── ChatActivity.java
+│   └── ProfileActivity.java
+│
+├── adapters
+│   ├── UserAdapter.java
+│   └── MessageAdapter.java
+│
+├── models
+│   ├── User.java
+│   └── Message.java
+│
+├── firebase
+│   ├── FirebaseAuthManager.java
+│   └── FirebaseDatabaseManager.java
+│
+├── utils
+│   ├── Constants.java
+│   ├── TimeUtils.java
+│   └── PreferenceManager.java
+│
+└── MainActivity.java
