@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Simplechatapp">
-        <activity android:name=".activities.RegisterActivity"/>
-        <activity android:name=".activities.LoginActivity"/>
-        <activity android:name=".activities.UsersActivity"/>
-        <activity android:name=".activities.ChatActivity"/>
-
-
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.UsersActivity" />
+        <activity android:name=".activities.ChatActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

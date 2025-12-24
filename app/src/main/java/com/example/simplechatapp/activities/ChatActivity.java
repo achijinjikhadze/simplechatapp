@@ -1,15 +1,16 @@
 package com.example.simplechatapp.activities;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.adapters.MessageAdapter;
@@ -25,9 +26,10 @@ import java.util.ArrayList;
 
 public class ChatActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private ListView listView;
     private EditText etMessage;
     private Button btnSend;
+    private ImageButton btnSend2;
 
     private FirebaseAuth auth;
     private DatabaseReference chatsRef;
@@ -42,14 +44,14 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        recyclerView = findViewById(R.id.recyclerViewMessages);
+        listView = findViewById(R.id.listViewMessages);
         etMessage = findViewById(R.id.etMessage);
         btnSend = findViewById(R.id.btnSend);
+        btnSend2 = findViewById(R.id.sendbtn);
+
 
         auth = FirebaseAuth.getInstance();
         senderId = auth.getCurrentUser().getUid();
-
-        // Get receiver info from intent
         receiverId = getIntent().getStringExtra("userId");
         receiverName = getIntent().getStringExtra("userName");
 
@@ -57,11 +59,11 @@ public class ChatActivity extends AppCompatActivity {
 
         chatsRef = FirebaseDatabase.getInstance().getReference("chats");
         messageList = new ArrayList<>();
-        adapter = new MessageAdapter(messageList, senderId);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        adapter = new MessageAdapter(this, messageList, senderId);
+        listView.setAdapter(adapter);
 
         btnSend.setOnClickListener(v -> sendMessage());
+        btnSend2.setOnClickListener(v -> sendMessage());
 
         loadMessages();
     }
@@ -70,9 +72,10 @@ public class ChatActivity extends AppCompatActivity {
         String text = etMessage.getText().toString().trim();
         if (TextUtils.isEmpty(text)) return;
 
-        String chatId = senderId + "_" + receiverId;
+        String chatId = senderId + "_" + receiverId; //unikaluri chatid (marto 1 arsebobs)
         long timestamp = System.currentTimeMillis();
 
+        //axali mesiji
         Message message = new Message(senderId, receiverId, text, timestamp, false);
 
         chatsRef.child(chatId).push().setValue(message)
@@ -80,35 +83,35 @@ public class ChatActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         etMessage.setText("");
                     } else {
-                        Toast.makeText(ChatActivity.this, "Failed to send", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatActivity.this, "ვერ გაიგზავნა", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void loadMessages() {
+        //firebasedan orive mxaris wamogeba mesagebis sachveneblad
         String chatId1 = senderId + "_" + receiverId;
         String chatId2 = receiverId + "_" + senderId;
 
-
-
+        //chveni mesijebi
         chatsRef.child(chatId1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageList.clear();
+                messageList.clear(); //dzveli messijebis washla
+
+                //forit gadayola mesijebze
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Message msg = ds.getValue(Message.class);
                     messageList.add(msg);
 
+                    //tunaxa - tu current useri aris mimgebi
                     if (msg.receiverId.equals(senderId) && !msg.seen) {
                         ds.getRef().child("seen").setValue(true);
                     }
                 }
-                recyclerView.scrollToPosition(messageList.size() - 1);
                 adapter.notifyDataSetChanged();
-
-
+                listView.setSelection(messageList.size() - 1); //bolo mesijze chasvla
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -116,8 +119,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
-
-
+        //meore useris mesijebi
         chatsRef.child(chatId2).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -127,14 +129,12 @@ public class ChatActivity extends AppCompatActivity {
                         messageList.add(msg);
                     }
                 }
-                recyclerView.scrollToPosition(messageList.size() - 1);
                 adapter.notifyDataSetChanged();
+                listView.setSelection(messageList.size() - 1);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-
-
     }
 }

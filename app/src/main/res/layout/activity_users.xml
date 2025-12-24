@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:padding="12dp">
 
-
     <Button
         android:id="@+id/btnlogout"
         android:layout_width="wrap_content"
@@ -14,10 +13,9 @@
         android:layout_gravity="end"
         android:layout_marginBottom="8dp"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewUsers"
+    <ListView
+        android:id="@+id/listViewUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 
 </LinearLayout>

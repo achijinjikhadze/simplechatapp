@@ -3,12 +3,10 @@ package com.example.simplechatapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.adapters.UserAdapter;
@@ -21,90 +19,85 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-public class UsersActivity extends AppCompatActivity
-        implements UserAdapter.OnUserClickListener {
 
-    private RecyclerView recyclerView;
+public class UsersActivity extends AppCompatActivity {
+
+    private ListView listView;
     private ArrayList<User> usersList;
     private UserAdapter adapter;
+    private Button btnLogout;
 
     private FirebaseAuth auth;
     private DatabaseReference usersRef;
-    private Button btnlogout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
 
-        recyclerView = findViewById(R.id.recyclerViewUsers);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        usersList = new ArrayList<>();
-        adapter = new UserAdapter(usersList, this);
-        recyclerView.setAdapter(adapter);
+        listView = findViewById(R.id.listViewUsers);
+        btnLogout = findViewById(R.id.btnlogout);
 
         auth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("users");
 
+        usersList = new ArrayList<>();
+        adapter = new UserAdapter(this, usersList, user -> openChat(user));
+        listView.setAdapter(adapter);
+
         loadUsers();
 
-        btnlogout = findViewById(R.id.btnlogout);
-        btnlogout.setOnClickListener(v -> logout());
-
+        btnLogout.setOnClickListener(v -> logout());
     }
 
+    //userebis listi
     private void loadUsers() {
         usersRef.addValueEventListener(new ValueEventListener() {
+            //roca data sheicvleba
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                usersList.clear();
+            public void onDataChange(DataSnapshot snapshot) {
+                usersList.clear(); //dublirebis asacileblad listis gasuftaveba
                 String currentUid = auth.getCurrentUser().getUid();
 
+                //listis loopi
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     User user = ds.getValue(User.class);
-                    /*if (user != null && !user.uid.equals(currentUid)) {
-                        usersList.add(user);
-                    }*/
-                    if (user != null) {
+                    if (user != null && !user.uid.equals(currentUid)) { //axlandeli useri ar chans
                         usersList.add(user);
                     }
-
                 }
+
                 Toast.makeText(UsersActivity.this,
-                        "Users found: " + snapshot.getChildrenCount(),
+                        "მომხმარებლები: " + usersList.size(),
                         Toast.LENGTH_SHORT).show();
 
                 adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(UsersActivity.this, "Failed to load users", Toast.LENGTH_SHORT).show();
+            public void onCancelled(DatabaseError error) {
+                Toast.makeText(UsersActivity.this,
+                        "Failed to load users", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-   @Override
-    public void onUserClick(User user) {
+    //chatis intenti
+    private void openChat(User user) {
         Intent intent = new Intent(this, ChatActivity.class);
         intent.putExtra("userId", user.uid);
         intent.putExtra("userName", user.name);
         startActivity(intent);
     }
 
+    //gamosvla
     private void logout() {
-        FirebaseDatabase.getInstance()
-                .getReference("users")
-                .child(auth.getCurrentUser().getUid())
+        usersRef.child(auth.getCurrentUser().getUid())
                 .child("status")
                 .setValue("offline");
 
         auth.signOut();
-
-        startActivity(new Intent(UsersActivity.this, LoginActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
-
 }

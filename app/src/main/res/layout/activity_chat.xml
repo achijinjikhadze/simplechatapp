@@ -1,23 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:padding="5dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewMessages"
+    <ListView
+        android:id="@+id/listViewMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="8dp"/>
+        android:dividerHeight="-13dp"
+        android:divider="@null"
+        android:padding="0dp"
+        android:layout_marginTop="30dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:layout_marginBottom="30dp">
+        android:layout_height="60dp"
+        android:padding="0dp"
+        android:gravity="center"
+        android:layout_marginBottom="50dp">
+
+        <ImageButton
+            android:id="@+id/camerabtn"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:padding="0dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/camera"
+            app:tint="@color/gold"
+            android:layout_marginLeft="-0dp"/>
+
+        <ImageButton
+            android:id="@+id/photobtn"
+            android:layout_width="35dp"
+            android:src="@drawable/photo"
+            android:layout_height="match_parent"
+            android:background="@null"
+            app:tint="@color/gold"
+            />
+
+        <ImageButton
+            android:id="@+id/voicebtn"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/voice"
+            app:tint="@color/gold" />
 
         <EditText
             android:id="@+id/etMessage"
@@ -25,6 +58,14 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Type a message"/>
+
+        <ImageButton
+            android:id="@+id/sendbtn"
+            android:layout_width="35dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/send2"
+            app:tint="@color/gold" />
 
         <Button
             android:id="@+id/btnSend"

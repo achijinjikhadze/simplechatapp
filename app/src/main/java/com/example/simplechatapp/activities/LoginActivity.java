@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
-       /*if (auth.getCurrentUser() != null) {
+      /* if (auth.getCurrentUser() != null) {
             goToUsers();
             return;
         }*/
@@ -45,15 +45,17 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
 
+        //tu yvela field ar chaiwera
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "All fields required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "შეავსე ყველა", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        //shesvla
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "წარმატებით შეხვედი", Toast.LENGTH_SHORT).show();
                         goToUsers();
                     } else {
                         Toast.makeText(this,
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    //shesvlis mere userebis listi
     private void goToUsers() {
         Intent intent = new Intent(this, UsersActivity.class);
         startActivity(intent);

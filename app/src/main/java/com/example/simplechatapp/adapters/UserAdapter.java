@@ -1,68 +1,82 @@
 package com.example.simplechatapp.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.models.User;
 
 import java.util.ArrayList;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class UserAdapter extends BaseAdapter {
 
     private ArrayList<User> users;
-    private OnUserClickListener listener;
+    private Context context;
 
+
+    //activitys gadavcemt useris objects
     public interface OnUserClickListener {
         void onUserClick(User user);
     }
 
-    public UserAdapter(ArrayList<User> users, OnUserClickListener listener) {
+    private OnUserClickListener listener;
+
+    //useris contructori
+    public UserAdapter(Context context, ArrayList<User> users, OnUserClickListener listener) {
+        this.context = context;
         this.users = users;
         this.listener = listener;
     }
 
-    @NonNull
     @Override
-    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_user, parent, false);
-        return new UserViewHolder(view);
+    public int getCount() {
+        return users.size();
     }
 
     @Override
-    public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
+    public Object getItem(int position) {
+        return users.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+      //axali view layoutistvis
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
+        }
+
+        TextView tvName = convertView.findViewById(R.id.tvUserName);
+        TextView tvStatus = convertView.findViewById(R.id.tvStatus);
+
         User user = users.get(position);
 
-        holder.tvName.setText(user.name);
-        holder.tvStatus.setText(user.status);
+        tvName.setText(user.name);
+        tvStatus.setText(user.status);
 
-        holder.itemView.setOnClickListener(v -> {
+        //clicki
+        convertView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onUserClick(user);
             }
         });
+
+        return convertView;
     }
 
 
-    @Override
-    public int getItemCount() {
-        return users.size();
-    }
-
-    public static class UserViewHolder extends RecyclerView.ViewHolder {
+    /*
+    private static class ViewHolder {
         TextView tvName, tvStatus;
-
-        public UserViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvName = itemView.findViewById(R.id.tvUserName);
-            tvStatus = itemView.findViewById(R.id.tvStatus);
-        }
-    }
-
+    }*/
 }

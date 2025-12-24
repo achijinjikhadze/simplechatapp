@@ -1,12 +1,11 @@
 package com.example.simplechatapp.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.models.Message;
@@ -16,86 +15,71 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    private static final int MSG_LEFT = 0;
-    private static final int MSG_RIGHT = 1;
+public class MessageAdapter extends BaseAdapter {
 
     private ArrayList<Message> messages;
+    private Context context;
     private String currentUserId;
 
-    public MessageAdapter(ArrayList<Message> messages, String currentUserId) {
+    public MessageAdapter(Context context, ArrayList<Message> messages, String currentUserId) {
+        this.context = context;
         this.messages = messages;
-        this.currentUserId = currentUserId;
+        this.currentUserId = currentUserId; //amjamindeli useri/ vigebt meisji gagazvnilia tu migebuli
+    }
+
+    @Override
+    public int getCount() {
+        return messages.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return messages.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        Message msg = messages.get(position);
+        boolean isRight = msg.senderId.equals(currentUserId); //tu am userit gavagavnet
+
+        int type = getItemViewType(position);
+
+        if (convertView == null) {
+            //romeli mesijis layout gaixsnas, lefti tu righti
+            convertView = LayoutInflater.from(context).inflate(isRight ? R.layout.item_message_right : R.layout.item_message_left, parent, false);
+        }
+
+        TextView tvMessage = convertView.findViewById(R.id.tvMessage);
+        TextView tvTime = convertView.findViewById(R.id.tvTime);
+        TextView tvSeen = convertView.findViewById(R.id.tvSeen);
+
+        tvMessage.setText(msg.message);
+        tvTime.setText(new SimpleDateFormat("HH:mm", Locale.getDefault())
+                .format(new Date(msg.timestamp)));
+
+        if (isRight && tvSeen != null) {
+            tvSeen.setText(msg.seen ? "✓✓" : "✓");
+        }
+
+        return convertView;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (messages.get(position).senderId.equals(currentUserId)) {
-            return MSG_RIGHT;
-        } else {
-            return MSG_LEFT;
-        }
+        //1:mesiji gavagzavnet, 0:mesiji mivighet
+        return messages.get(position).senderId.equals(currentUserId) ? 1 : 0;
     }
-
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if (viewType == MSG_RIGHT) {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_message_right, parent, false);
-            return new RightMessageViewHolder(view);
-        } else {
-            View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_message_left, parent, false);
-            return new LeftMessageViewHolder(view);
-        }
-    }
-
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Message msg = messages.get(position);
-        String time = new SimpleDateFormat("HH:mm", Locale.getDefault())
-                .format(new Date(msg.timestamp));
-
-        if (holder instanceof RightMessageViewHolder) {
-            RightMessageViewHolder h = (RightMessageViewHolder) holder;
-            h.tvMessage.setText(msg.message);
-            h.tvTime.setText(time);
-            h.tvSeen.setText(msg.seen ? "✓✓" : "✓");
-        } else {
-            LeftMessageViewHolder h = (LeftMessageViewHolder) holder;
-            h.tvMessage.setText(msg.message);
-            h.tvTime.setText(time);
-        }
+    public int getViewTypeCount() {
+        return 2;
+        //ori layout tipi, 1-gagzavnili mesijebi, 2-migebuli mesijebi
     }
-
-
-    @Override
-    public int getItemCount() {
-        return messages.size();
-    }
-
-    static class LeftMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMessage, tvTime;
-
-        public LeftMessageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvMessage = itemView.findViewById(R.id.tvMessage);
-            tvTime = itemView.findViewById(R.id.tvTime);
-        }
-    }
-
-    static class RightMessageViewHolder extends RecyclerView.ViewHolder {
-        TextView tvMessage, tvTime, tvSeen;
-
-        public RightMessageViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvMessage = itemView.findViewById(R.id.tvMessage);
-            tvTime = itemView.findViewById(R.id.tvTime);
-            tvSeen = itemView.findViewById(R.id.tvSeen);
-        }
-    }
-
 }
