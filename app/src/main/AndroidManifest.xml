@@ -12,14 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Simplechatapp">
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.FirstActivity"
             android:exported="false" />
-        <activity android:name=".activities.RegisterActivity" />
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.UsersActivity" />
-        <activity android:name=".activities.ChatActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.UsersActivity" />
+        <activity android:name=".activities.ChatActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"></activity>
     </application>
 
 </manifest>

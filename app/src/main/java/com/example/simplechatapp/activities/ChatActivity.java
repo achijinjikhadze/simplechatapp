@@ -46,7 +46,7 @@ public class ChatActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewMessages);
         etMessage = findViewById(R.id.etMessage);
-        btnSend = findViewById(R.id.btnSend);
+        //btnSend = findViewById(R.id.btnSend);
         btnSend2 = findViewById(R.id.sendbtn);
 
 
@@ -62,7 +62,7 @@ public class ChatActivity extends AppCompatActivity {
         adapter = new MessageAdapter(this, messageList, senderId);
         listView.setAdapter(adapter);
 
-        btnSend.setOnClickListener(v -> sendMessage());
+        //btnSend.setOnClickListener(v -> sendMessage());
         btnSend2.setOnClickListener(v -> sendMessage());
 
         loadMessages();

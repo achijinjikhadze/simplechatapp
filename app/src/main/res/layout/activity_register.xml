@@ -3,34 +3,94 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:background="@color/dark">
 
-    <EditText
-        android:id="@+id/etname"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name" />
+        android:text="რეგისტრაცია"
+        android:gravity="center"
+        android:lineSpacingExtra="20dp"
+        android:textSize="35dp"
+        android:textColor="@color/gold"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:layout_marginTop="40dp"/>
 
-    <EditText
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა"
+        android:gravity="center"
+        android:lineSpacingExtra="0dp"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:fontFamily="monospace"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <EditText
+            android:id="@+id/etname"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="სახელი"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:background="@drawable/eddittext_bg"/>
+
+
+        <EditText
         android:id="@+id/etemail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
+        android:layout_height="60dp"
+        android:hint="ელფოსტა"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:background="@drawable/eddittext_bg"/>
 
     <EditText
         android:id="@+id/etpassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
+        android:layout_height="60dp"
+        android:hint="პაროლი"
         android:inputType="textPassword"
-        android:layout_marginTop="12dp"/>
+        android:layout_marginTop="12dp"
+        android:textColor="@color/gold"
+        android:textColorHint="@color/gold"
+        android:background="@drawable/eddittext_bg"/>
 
-    <Button
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="დაგავიწყდა პაროლი?"
+            android:gravity="right"
+            android:textColor="@color/gold"
+            android:layout_marginTop="6dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnregister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:layout_marginTop="20dp"/>
+        android:text="რეგისტრაცია"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/logbtn"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="უკვე გაქვს ანგარიში?"
+            android:gravity="center"
+            android:textColor="@color/gold"
+            android:layout_marginTop="20dp"/>
+    </LinearLayout>
 </LinearLayout>

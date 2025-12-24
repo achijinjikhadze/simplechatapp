@@ -1,36 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp">
+    android:padding="24dp"
+    android:id="@+id/main"
+    android:background="@color/dark">
 
-    <EditText
-        android:id="@+id/etemail"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"/>
+        android:text="შესვლა"
+        android:gravity="center"
+        android:lineSpacingExtra="20dp"
+        android:textSize="35dp"
+        android:textColor="@color/gold"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:layout_marginTop="40dp"/>
 
-    <EditText
-        android:id="@+id/etpassword"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:layout_marginTop="12dp"/>
+        android:text="თუ არ გაქვს, შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა"
+        android:gravity="center"
+        android:lineSpacingExtra="0dp"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:fontFamily="monospace"
+        android:layout_marginTop="10dp"/>
 
-    <Button
-        android:id="@+id/btnlogin"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
 
-    <Button
-        android:id="@+id/btngoreg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Account"
-        android:layout_marginTop="8dp"/>
+        <EditText
+            android:id="@+id/etemail"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="ელფოსტა"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:background="@drawable/eddittext_bg"/>
+
+        <EditText
+            android:id="@+id/etpassword"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="პაროლი"
+            android:inputType="textPassword"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"
+            android:background="@drawable/eddittext_bg"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="დაგავიწყდა პაროლი?"
+            android:gravity="right"
+            android:textColor="@color/gold"
+            android:layout_marginTop="6dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnlogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="შესვლა"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/logbtn"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="შექმენი ახალი ანგარიში"
+            android:gravity="center"
+            android:textColor="@color/gold"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
 </LinearLayout>

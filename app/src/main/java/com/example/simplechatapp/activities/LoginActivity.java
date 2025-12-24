@@ -7,7 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.simplechatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,22 +27,25 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        EdgeToEdge.enable(this);
+
 
         auth = FirebaseAuth.getInstance();
 
-      /* if (auth.getCurrentUser() != null) {
+       if (auth.getCurrentUser() != null) {
             goToUsers();
             return;
-        }*/
+        }
 
         etEmail = findViewById(R.id.etemail);
         etPassword = findViewById(R.id.etpassword);
         btnLogin = findViewById(R.id.btnlogin);
-        btnGoRegister = findViewById(R.id.btngoreg);
+        //btnGoRegister = findViewById(R.id.btngoreg);
 
         btnLogin.setOnClickListener(v -> loginUser());
-        btnGoRegister.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterActivity.class)));
+
+        //btnGoRegister.setOnClickListener(v ->
+              //  startActivity(new Intent(this, RegisterActivity.class)));
     }
 
     private void loginUser() {

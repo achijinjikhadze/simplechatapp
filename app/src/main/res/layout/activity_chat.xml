@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:padding="5dp"
+    android:background="@color/dark">
 
     <ListView
         android:id="@+id/listViewMessages"
@@ -61,16 +62,18 @@
 
         <ImageButton
             android:id="@+id/sendbtn"
-            android:layout_width="35dp"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/send2"
             app:tint="@color/gold" />
 
+        <!--
         <Button
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"/>
+            android:text="Send"/>-->
+
     </LinearLayout>
 </LinearLayout>

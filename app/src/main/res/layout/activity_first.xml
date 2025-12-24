@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.FirstActivity"
+    android:orientation="vertical"
+    android:background="@color/dark">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simple Chat Application"
+        android:gravity="center"
+        android:lineSpacingExtra="20dp"
+        android:textSize="40dp"
+        android:textColor="@color/gold"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="უბრალო მიმოწერის აპლიკაცია, დარეგისტრიტდი თუ არ გაქვს ანგარიში"
+        android:gravity="center"
+        android:lineSpacingExtra="0dp"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:fontFamily="monospace"
+        android:layout_marginTop="25dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+       >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="შესვლა"
+            android:background="@drawable/logbtn"
+            android:textColor="@color/dark"
+            android:layout_marginEnd="5dp"
+            android:textStyle="bold"
+            android:id="@+id/logbtn"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="რეგისტრაცია"
+            android:background="@drawable/regbtn"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/gold"
+            android:id="@+id/regbtn"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
