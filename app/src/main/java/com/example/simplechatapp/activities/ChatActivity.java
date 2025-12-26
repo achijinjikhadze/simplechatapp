@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,6 +43,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_chat);
 
         listView = findViewById(R.id.listViewMessages);
@@ -66,9 +68,17 @@ public class ChatActivity extends AppCompatActivity {
         btnSend2.setOnClickListener(v -> sendMessage());
 
         loadMessages();
+
+        etMessage.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                listView.post(() -> listView.setSelection(adapter.getCount() - 1));
+            }
+        });
+
+
     }
 
-    private void sendMessage() {
+  /*  private void sendMessage() {
         String text = etMessage.getText().toString().trim();
         if (TextUtils.isEmpty(text)) return;
 
@@ -86,9 +96,60 @@ public class ChatActivity extends AppCompatActivity {
                         Toast.makeText(ChatActivity.this, "ვერ გაიგზავნა", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }*/
+
+    private void sendMessage() {
+        String text = etMessage.getText().toString().trim();
+        if (TextUtils.isEmpty(text)) return;
+
+        String chatId = senderId.compareTo(receiverId) < 0 ?
+                senderId + "_" + receiverId :
+                receiverId + "_" + senderId;
+
+        long timestamp = System.currentTimeMillis();
+        Message message = new Message(senderId, receiverId, text, timestamp, false);
+
+        chatsRef.child(chatId).push().setValue(message)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        etMessage.setText("");
+                    } else {
+                        Toast.makeText(ChatActivity.this, "ვერ გაიგზავნა", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
+
+
     private void loadMessages() {
+        String chatId = senderId.compareTo(receiverId) < 0 ?
+                senderId + "_" + receiverId :
+                receiverId + "_" + senderId;
+
+        chatsRef.child(chatId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messageList.clear(); // clear before adding all messages
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    Message msg = ds.getValue(Message.class);
+                    messageList.add(msg);
+
+                    // mark seen if the message is for me
+                    if (msg.receiverId.equals(senderId) && !msg.seen) {
+                        ds.getRef().child("seen").setValue(true);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+                listView.setSelection(messageList.size() - 1); // scroll to bottom
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+
+
+   /* private void loadMessages() {
         //firebasedan orive mxaris wamogeba mesagebis sachveneblad
         String chatId1 = senderId + "_" + receiverId;
         String chatId2 = receiverId + "_" + senderId;
@@ -97,12 +158,14 @@ public class ChatActivity extends AppCompatActivity {
         chatsRef.child(chatId1).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                messageList.clear(); //dzveli messijebis washla
+                //messageList.clear();dzveli messijebis washla
 
                 //forit gadayola mesijebze
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Message msg = ds.getValue(Message.class);
-                    messageList.add(msg);
+                    if (!messageList.contains(msg)) {
+                        messageList.add(msg);
+                    }
 
                     //tunaxa - tu current useri aris mimgebi
                     if (msg.receiverId.equals(senderId) && !msg.seen) {
@@ -136,5 +199,5 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {}
         });
-    }
+    }*/
 }

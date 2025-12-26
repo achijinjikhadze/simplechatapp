@@ -1,49 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark"
     android:padding="5dp"
-    android:background="@color/dark">
+    android:fitsSystemWindows="true"
+    >
 
     <ListView
         android:id="@+id/listViewMessages"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:dividerHeight="-13dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomLayout"
         android:divider="@null"
-        android:padding="0dp"
-        android:layout_marginTop="30dp"/>
+        android:dividerHeight="0dp"
+        android:paddingTop="30dp"/>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:padding="0dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:layout_marginBottom="50dp">
+        android:padding="5dp">
 
         <ImageButton
             android:id="@+id/camerabtn"
             android:layout_width="35dp"
             android:layout_height="match_parent"
             android:background="@null"
-            android:padding="0dp"
-            android:scaleType="centerInside"
             android:src="@drawable/camera"
-            app:tint="@color/gold"
-            android:layout_marginLeft="-0dp"/>
+            app:tint="@color/gold"/>
 
         <ImageButton
             android:id="@+id/photobtn"
             android:layout_width="35dp"
-            android:src="@drawable/photo"
             android:layout_height="match_parent"
             android:background="@null"
-            app:tint="@color/gold"
-            />
+            android:src="@drawable/photo"
+            app:tint="@color/gold"/>
 
         <ImageButton
             android:id="@+id/voicebtn"
@@ -51,14 +47,16 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/voice"
-            app:tint="@color/gold" />
+            app:tint="@color/gold"/>
 
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Type a message"/>
+            android:hint="Type a message"
+            android:textColor="@color/gold"
+            android:textColorHint="@color/gold"/>
 
         <ImageButton
             android:id="@+id/sendbtn"
@@ -66,14 +64,6 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/send2"
-            app:tint="@color/gold" />
-
-        <!--
-        <Button
-            android:id="@+id/btnSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Send"/>-->
-
+            app:tint="@color/gold"/>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

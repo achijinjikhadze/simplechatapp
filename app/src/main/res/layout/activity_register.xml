@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="24dp"
     android:background="@color/dark">
@@ -34,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="50dp">
 
         <EditText
             android:id="@+id/etname"
@@ -66,20 +67,25 @@
         android:layout_marginTop="12dp"
         android:textColor="@color/gold"
         android:textColorHint="@color/gold"
-        android:background="@drawable/eddittext_bg"/>
+        android:background="@drawable/eddittext_bg"
+        />
 
-        <TextView
+        <EditText
+            android:id="@+id/etpassword2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="დაგავიწყდა პაროლი?"
-            android:gravity="right"
+            android:layout_height="60dp"
+            android:hint="გაიმეორეთ პაროლი"
+            android:inputType="textPassword"
+            android:layout_marginTop="12dp"
             android:textColor="@color/gold"
-            android:layout_marginTop="6dp"/>
+            android:textColorHint="@color/gold"
+            android:background="@drawable/eddittext_bg"/>
+
 
         <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnregister"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:text="რეგისტრაცია"
         android:layout_marginTop="20dp"
         android:background="@drawable/logbtn"
@@ -91,6 +97,9 @@
             android:text="უკვე გაქვს ანგარიში?"
             android:gravity="center"
             android:textColor="@color/gold"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/oldacc"/>
     </LinearLayout>
 </LinearLayout>

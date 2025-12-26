@@ -52,4 +52,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btngolog" />
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <LinearLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+                <ImageButton
+                    android:id="@+id/p"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:src="@drawable/camera"
+                    app:tint="@color/gold"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/t"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:src="@drawable/cclogo"
+                    app:tint="@color/gold"
+                    android:layout_weight="1"/>
+
+                <ImageButton
+                    android:id="@+id/chati"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:src="@drawable/chat"
+                    app:tint="@color/gold"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/w"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:src="@drawable/camera"
+                    app:tint="@color/gold"
+                    android:layout_weight="1"/>
+                <ImageButton
+                    android:id="@+id/user"
+                    android:layout_width="35dp"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:src="@drawable/useri"
+                    app:tint="@color/gold"
+                    android:layout_weight="1"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

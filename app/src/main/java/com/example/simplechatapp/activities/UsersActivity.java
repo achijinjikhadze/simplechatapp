@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.simplechatapp.R;
@@ -34,6 +35,7 @@ public class UsersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
+        EdgeToEdge.enable(this);
 
         listView = findViewById(R.id.listViewUsers);
         btnLogout = findViewById(R.id.btnlogout);

@@ -1,12 +1,18 @@
 package com.example.simplechatapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.simplechatapp.R;
@@ -16,11 +22,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etname, etemail, etpassword;
+    private EditText etname, etemail, etpassword, etpassword2;
     private Button etregister;
+    private TextView oldacc;
 
     private FirebaseAuth auth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +35,48 @@ public class RegisterActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
 
+        oldacc=findViewById(R.id.oldacc);
         etname = findViewById(R.id.etname);
         etemail = findViewById(R.id.etemail);
         etpassword = findViewById(R.id.etpassword);
+        etpassword2 = findViewById(R.id.etpassword2);
         etregister = findViewById(R.id.btnregister);
 
-        etregister.setOnClickListener(v -> registerUser());
+
+        etregister.setOnClickListener(v -> {
+            String pass1 = etpassword.getText().toString();
+            String pass2 = etpassword2.getText().toString();
+
+            if (!pass1.equals(pass2)) {
+                Toast.makeText(RegisterActivity.this, "პაროლები არ ემთხვევა, სცადე თავიდან", Toast.LENGTH_SHORT).show();
+            } else {
+                registerUser();
+            }
+        });
+
+
+
+        oldacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( RegisterActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //ukan gamosvla firstactivtize
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                Intent intent = new Intent(RegisterActivity.this, FirstActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void registerUser() {

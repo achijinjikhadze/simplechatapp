@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.simplechatapp.activities.LoginActivity;
 import com.example.simplechatapp.activities.RegisterActivity;
@@ -41,6 +42,24 @@ public class MainActivity extends AppCompatActivity {
         logbtn=findViewById(R.id.btngolog);
 
         usrbtn=findViewById(R.id.btnusr);
+
+        // Example: switch fragment
+        Fragment selectedFragment = null;
+
+      /*  switch (buttonId) { //sachiro
+            //case R.id.chati:
+                //selectedFragment = new ChatFragment();
+               // break;
+            case R.id.user:
+                selectedFragment = new UsersFragment();
+                break;
+        }*/
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, selectedFragment)
+                .commit();
+
 
         regbtn.setOnClickListener(v -> {
 

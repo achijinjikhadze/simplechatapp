@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Simplechatapp">
+
         <activity
             android:name=".activities.FirstActivity"
             android:exported="false" />
@@ -24,12 +25,15 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.RegisterActivity" />
+
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.UsersActivity" />
-        <activity android:name=".activities.ChatActivity" />
+        <activity
+            android:name=".activities.ChatActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
