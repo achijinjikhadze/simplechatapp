@@ -59,7 +59,7 @@ public class FirstActivity extends AppCompatActivity {
     }
 
     private void goToUsers() {
-        Intent intent = new Intent(this, UsersActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

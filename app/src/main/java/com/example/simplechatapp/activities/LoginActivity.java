@@ -18,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.simplechatapp.Forgpas;
+import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -112,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //shesvlis mere userebis listi
     private void goToUsers() {
-        Intent intent = new Intent(this, UsersActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }

@@ -8,6 +8,15 @@
     android:background="@color/dark">
 
     <Button
+        android:id="@+id/btnmn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mainact"
+        android:layout_gravity="end"
+        android:layout_marginBottom="-20dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
         android:id="@+id/btnlogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -3,6 +3,7 @@ package com.example.simplechatapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,12 +16,15 @@ import androidx.fragment.app.Fragment;
 import com.example.simplechatapp.activities.LoginActivity;
 import com.example.simplechatapp.activities.RegisterActivity;
 import com.example.simplechatapp.activities.UsersActivity;
+import com.example.simplechatapp.fragments.Chatusersfragment;
+import com.example.simplechatapp.fragments.Profilefragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button regbtn, logbtn, usrbtn;
+    ImageButton home, chat, user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -46,19 +49,31 @@ public class MainActivity extends AppCompatActivity {
         // Example: switch fragment
         Fragment selectedFragment = null;
 
-      /*  switch (buttonId) { //sachiro
-            //case R.id.chati:
-                //selectedFragment = new ChatFragment();
-               // break;
-            case R.id.user:
-                selectedFragment = new UsersFragment();
-                break;
-        }*/
+      //navigation butonebi
+        home   = findViewById(R.id.home);
+        chat   = findViewById(R.id.chat);
+        user  = findViewById(R.id.user);
 
-        getSupportFragmentManager()
+
+        //gadava im fragemntze romelsac daacher
+
+        loadFragment(new Chatusersfragment());
+
+        user.setOnClickListener(v ->
+                loadFragment(new Profilefragment()));
+
+       chat.setOnClickListener(v ->
+                loadFragment(new Chatusersfragment()));
+
+        /*home.setOnClickListener(v ->
+                loadFragment(new HomeFragment()));*/
+
+       /* getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, selectedFragment)
-                .commit();
+                .commit();*/
+
+
 
 
         regbtn.setOnClickListener(v -> {
@@ -80,4 +95,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
 }
+

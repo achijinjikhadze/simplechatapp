@@ -2,6 +2,7 @@ package com.example.simplechatapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.adapters.UserAdapter;
 import com.example.simplechatapp.models.User;
@@ -26,7 +28,7 @@ public class UsersActivity extends AppCompatActivity {
     private ListView listView;
     private ArrayList<User> usersList;
     private UserAdapter adapter;
-    private Button btnLogout;
+    private Button btnLogout, btnmn;
 
     private FirebaseAuth auth;
     private DatabaseReference usersRef;
@@ -39,6 +41,7 @@ public class UsersActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewUsers);
         btnLogout = findViewById(R.id.btnlogout);
+        btnmn=findViewById(R.id.btnmn);
 
         auth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("users");
@@ -50,6 +53,14 @@ public class UsersActivity extends AppCompatActivity {
         loadUsers();
 
         btnLogout.setOnClickListener(v -> logout());
+
+        btnmn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(UsersActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //userebis listi
