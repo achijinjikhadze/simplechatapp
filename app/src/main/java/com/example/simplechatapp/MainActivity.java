@@ -58,12 +58,24 @@ public class MainActivity extends AppCompatActivity {
         //gadava im fragemntze romelsac daacher
 
         loadFragment(new Chatusersfragment());
+        user.setSelected(false);
+        home.setSelected(false);
+        chat.setSelected(true);
 
-        user.setOnClickListener(v ->
-                loadFragment(new Profilefragment()));
+        user.setOnClickListener(v -> {
+            user.setSelected(true);
+            home.setSelected(false);
+            chat.setSelected(false);
+            loadFragment(new Profilefragment());
+        });
 
-       chat.setOnClickListener(v ->
-                loadFragment(new Chatusersfragment()));
+
+        chat.setOnClickListener(v ->{
+                    user.setSelected(false);
+                    home.setSelected(false);
+                    chat.setSelected(true);
+                loadFragment(new Chatusersfragment());
+                });
 
         /*home.setOnClickListener(v ->
                 loadFragment(new HomeFragment()));*/

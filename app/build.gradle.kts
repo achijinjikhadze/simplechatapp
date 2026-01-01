@@ -1,3 +1,6 @@
+import org.gradle.kotlin.dsl.annotationProcessor
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
@@ -48,6 +51,16 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation("com.google.firebase:firebase-firestore")
     implementation(libs.recyclerview)
+    implementation(libs.firebase.storage)
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+    implementation ("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.16.0")
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

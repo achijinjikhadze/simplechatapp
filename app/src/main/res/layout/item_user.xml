@@ -9,12 +9,20 @@
     android:gravity="center"
     android:background="?android:attr/selectableItemBackground">
 
+    <FrameLayout
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rb2">
     <ImageView
+        android:id="@+id/profileImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:scaleType="centerCrop"
         android:src="@drawable/user"
-        app:tint="@color/gold"
-        />
+        android:layout_gravity="center"/>
+    </FrameLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:padding="10dp"

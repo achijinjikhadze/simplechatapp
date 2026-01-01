@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.models.User;
 
@@ -48,21 +50,33 @@ public class UserAdapter extends BaseAdapter {
     }
 
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-      //axali view layoutistvis
+        //axali view layoutistvis
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
         }
 
         TextView tvName = convertView.findViewById(R.id.tvUserName);
         TextView tvStatus = convertView.findViewById(R.id.tvStatus);
+        ImageView ivProfile = convertView.findViewById(R.id.profileImage);
 
         User user = users.get(position);
 
         tvName.setText(user.name);
         tvStatus.setText(user.status);
+
+        String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ?
+                user.imageUrl : "@drawable/user";
+
+        Glide.with(context)
+                .load(imageUrl)
+                .placeholder(R.drawable.user)
+                .error(R.drawable.user)
+                .circleCrop()
+                .into(ivProfile);
 
         //clicki
         convertView.setOnClickListener(v -> {

@@ -1,33 +1,133 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:background="@color/dark"
     android:padding="5dp"
-    android:fitsSystemWindows="true"
-    >
+    android:fitsSystemWindows="true">
+
+
+    <LinearLayout
+        android:id="@+id/topUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="2dp"
+        android:layout_marginLeft="0dp">
+
+        <ImageButton
+            android:id="@+id/bchat"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/back"
+            app:tint="@color/gold"
+            android:layout_gravity="start"/>
+
+        <FrameLayout
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rb2"
+            android:layout_marginLeft="3dp">
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:id="@+id/profileimg"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="User Name"
+                android:textSize="18sp"
+                android:textColor="@color/gold"/>
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="offline"
+                android:textSize="12sp"
+                android:textColor="#888"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <ImageButton
+                android:id="@+id/c"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/call"
+                app:tint="@color/gold"/>
+
+            <ImageButton
+                android:id="@+id/c21"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/vdcall"
+                app:tint="@color/gold"/>
+
+            <ImageButton
+                android:id="@+id/c2"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/more"
+                app:tint="@color/gold"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/listViewMessages"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomLayout"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:paddingTop="30dp"/>
+        android:paddingTop="5dp"/>
 
     <LinearLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
         android:orientation="horizontal"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:padding="5dp">
 
         <ImageButton
+            android:id="@+id/icshow"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/icshow"
+            app:tint="@color/gold"
+            android:visibility="gone"/>
+
+
+        <ImageButton
             android:id="@+id/camerabtn"
-            android:layout_width="35dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/camera"
@@ -35,7 +135,7 @@
 
         <ImageButton
             android:id="@+id/photobtn"
-            android:layout_width="35dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/photo"
@@ -43,7 +143,7 @@
 
         <ImageButton
             android:id="@+id/voicebtn"
-            android:layout_width="35dp"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
             android:background="@null"
             android:src="@drawable/voice"
@@ -52,11 +152,20 @@
         <EditText
             android:id="@+id/etMessage"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Type a message"
+            android:layout_weight="1"
+            android:hint="Message"
+            android:padding="10dp"
             android:textColor="@color/gold"
-            android:textColorHint="@color/gold"/>
+            android:textColorHint="@color/gold"
+            android:background="@drawable/typem"
+
+            android:inputType="textMultiLine"
+            android:minLines="1"
+            android:maxLines="2"
+            android:gravity="top|start"
+            android:overScrollMode="never"/>
+
 
         <ImageButton
             android:id="@+id/sendbtn"
@@ -66,4 +175,5 @@
             android:src="@drawable/send2"
             app:tint="@color/gold"/>
     </LinearLayout>
-</RelativeLayout>
+
+</LinearLayout>

@@ -10,7 +10,6 @@
 
 
 
-
     <ListView
         android:id="@+id/listViewUsers"
         android:layout_width="match_parent"

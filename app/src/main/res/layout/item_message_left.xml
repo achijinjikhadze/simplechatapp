@@ -13,6 +13,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_message_left"
     android:layout_gravity="start"
+    android:layout_marginRight="80dp"
     >
 
     <TextView
@@ -20,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
+        android:textSize="15sp"
         android:textColor="@color/white"/>
 
     <TextView
@@ -27,7 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10sp"
-        android:textColor="@color/white"
+        android:textColor="#ddd"
+        android:layout_gravity="right"
         />
 </LinearLayout>
 </LinearLayout>

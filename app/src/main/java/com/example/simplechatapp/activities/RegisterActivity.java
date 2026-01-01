@@ -83,6 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
         String name = etname.getText().toString().trim();
         String email = etemail.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
+        String imageurl = "https://i.ibb.co/cc3bQ1Qk/user.jpg";
 
 
         if (TextUtils.isEmpty(name) ||
@@ -98,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         String uid = auth.getCurrentUser().getUid();
-                        User user = new User(uid, name, email, "online");
+                        User user = new User(uid, name, email, "online", imageurl);
 
                         FirebaseDatabase.getInstance()
                                 .getReference("users")

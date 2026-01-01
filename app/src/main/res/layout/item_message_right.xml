@@ -14,6 +14,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_message_right"
     android:layout_gravity="end"
+    android:layout_marginLeft="80dp"
    >
 
     <!-- android:background="#0084FF"-->
@@ -23,22 +24,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="15sp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="right">
 
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10sp"
-        android:textColor="#ddd"/>
+        android:textColor="#ddd"
+        android:layout_gravity="right"
+        android:layout_marginRight="5dp"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/tvSeen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="✓"
-        android:textSize="12sp"
-        android:textColor="#fff"/>
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:textColor="#ddd"
+        android:layout_gravity="right"
+        android:gravity="center"
+       />
+    </LinearLayout>
 
 </LinearLayout>
 </LinearLayout>
