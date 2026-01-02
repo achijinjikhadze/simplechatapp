@@ -80,9 +80,9 @@ public class UsersActivity extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(UsersActivity.this,
+               /* Toast.makeText(UsersActivity.this,
                         "მომხმარებლები: " + usersList.size(),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
 
                 adapter.notifyDataSetChanged();
             }

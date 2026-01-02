@@ -26,6 +26,16 @@
             app:tint="@color/gold"
             android:layout_gravity="start"/>
 
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/chatuser"
+            android:clickable="true"
+            android:layout_weight="1"
+            >
+
+
         <FrameLayout
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -62,6 +72,7 @@
                 android:text="offline"
                 android:textSize="12sp"
                 android:textColor="#888"/>
+        </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

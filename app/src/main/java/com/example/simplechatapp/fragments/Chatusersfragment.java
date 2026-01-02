@@ -81,9 +81,9 @@ public class Chatusersfragment extends Fragment {
 
                 adapter.notifyDataSetChanged();
 
-                Toast.makeText(getContext(),
+                /*Toast.makeText(getContext(),
                         "მომხმარებლები: " + usersList.size(),
-                        Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();*/
             }
 
             @Override

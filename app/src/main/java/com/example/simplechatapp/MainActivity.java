@@ -41,13 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Firebase Connected", Toast.LENGTH_SHORT).show();
 
-        regbtn = findViewById(R.id.btngoreg);
-        logbtn=findViewById(R.id.btngolog);
 
-        usrbtn=findViewById(R.id.btnusr);
-
-        // Example: switch fragment
-        Fragment selectedFragment = null;
 
       //navigation butonebi
         home   = findViewById(R.id.home);
@@ -85,26 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragment_container, selectedFragment)
                 .commit();*/
 
-
-
-
-        regbtn.setOnClickListener(v -> {
-
-            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
-            startActivity(intent);
-        });
-
-        logbtn.setOnClickListener(v -> {
-
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        });
-
-        usrbtn.setOnClickListener(v -> {
-
-            Intent intent = new Intent(MainActivity.this, UsersActivity.class);
-            startActivity(intent);
-        });
 
     }
     private void loadFragment(Fragment fragment) {

@@ -3,17 +3,29 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
+
     android:background="@color/dark">
 
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/coverimg"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="-130dp"
+        android:scaleType="centerCrop"
+        />
 
     <FrameLayout
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginTop="50dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="-10dp"
         android:background="@drawable/round_border"
         >
+
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
@@ -35,7 +47,8 @@
         android:textSize="30sp"
         android:textColor="@color/gold"
         android:textStyle="bold"
-        android:fontFamily="sans-serif-smallcaps" />
+        android:fontFamily="@font/archivo"
+        android:layout_margin="10dp"/>
 
 
     <TextView
@@ -46,15 +59,141 @@
         android:text=""
         android:textSize="18sp"
         android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:padding="10dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginBottom="-10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:padding="12dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@drawable/profilerow"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            android:id="@+id/editname">
+            <ImageButton
+
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/name"
+                app:tint="@color/gold"
+                android:clickable="false"/>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:text="სახელის რედაქტირება"
+                android:textColor="@color/gold"
+                android:textSize="17sp"
+                android:paddingLeft="10dp"
+                android:fontFamily="@font/agremyn"/>
+
+        </LinearLayout>
+
+        <!---->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@drawable/profilerow"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            android:id="@+id/editimgt">
+            <ImageButton
+                android:id="@+id/edimgbt"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/editimg"
+                app:tint="@color/gold"
+                android:clickable="false"/>
+
+            <TextView
+                android:id="@+id/editimg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:text="ფოტოს შეცვლა"
+                android:textColor="@color/gold"
+                android:textSize="17sp"
+                android:paddingLeft="10dp"/>
 
 
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:text="Logout"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:id="@+id/btnlogout" />
+        </LinearLayout>
+
+        <!---->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@drawable/profilerow"
+            android:layout_marginBottom="5dp"
+            android:clickable="true"
+            android:id="@+id/editcov">
+            <ImageButton
+                android:id="@+id/editc"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/edcv"
+                app:tint="@color/gold"
+                android:clickable="false"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:text="ქოვერის შეცვლა"
+                android:textColor="@color/gold"
+                android:textSize="17sp"
+                android:paddingLeft="10dp"/>
+
+
+        </LinearLayout>
+
+
+        <!---->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:id="@+id/logbtnt"
+            android:clickable="true"
+            android:background="@drawable/profilerow">
+
+            <ImageButton
+                android:id="@+id/logbtn"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:src="@drawable/logout"
+                app:tint="@color/gold"
+                android:clickable="false"/>
+
+            <TextView
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start|center_vertical"
+                android:text="გამოსვლა"
+                android:textColor="@color/gold"
+                android:textSize="17sp"
+                android:paddingLeft="10dp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

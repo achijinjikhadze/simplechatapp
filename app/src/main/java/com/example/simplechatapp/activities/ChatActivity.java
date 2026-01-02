@@ -26,6 +26,7 @@ import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.adapters.MessageAdapter;
 import com.example.simplechatapp.models.Message;
+import com.example.simplechatapp.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +53,7 @@ public class ChatActivity extends AppCompatActivity {
     private String receiverId, receiverName, senderId;
 
     private ImageView ivProfile;
+    private LinearLayout chatuser;
 
 
     @Override
@@ -69,7 +71,7 @@ public class ChatActivity extends AppCompatActivity {
          photo = findViewById(R.id.photobtn);
          voice = findViewById(R.id.voicebtn);
          icshow = findViewById(R.id.icshow);
-
+         chatuser=findViewById(R.id.chatuser);
 
 
         auth = FirebaseAuth.getInstance();
@@ -90,10 +92,15 @@ public class ChatActivity extends AppCompatActivity {
         ivProfile = findViewById(R.id.profileimg);
         loadReceiverProfile();
 
+
+
         //btnSend.setOnClickListener(v -> sendMessage());
         btnSend2.setOnClickListener(v -> sendMessage());
 
         loadMessages();
+
+        //profilis gaxsna/
+        chatuser.setOnClickListener(v -> openprof());
 
         //typingis gadideba
         etMessage.setOnFocusChangeListener((v, hasFocus) -> {
@@ -153,6 +160,13 @@ public class ChatActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void openprof() {
+        Intent intent = new Intent(this, Profileactivity.class);
+        intent.putExtra("userId", receiverId);
+        intent.putExtra("userName", receiverName);
+        startActivity(intent);
     }
 
     private void animatemv() {
