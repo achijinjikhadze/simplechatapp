@@ -64,7 +64,7 @@ public class Profilefragment extends Fragment {
 
 
     private ImageView profileimg, coverimg;
-    private TextView usr, emailTextView,bioview;
+    private TextView usr, emailTextView,bioview,  folcnt1, folcnt2;;
     private LinearLayout logbtnt,editimgt, editcov, edtname;
     private Button btnlgout;
 
@@ -97,6 +97,8 @@ public class Profilefragment extends Fragment {
         usr = view.findViewById(R.id.userid);
         emailTextView = view.findViewById(R.id.emailTextView);
         bioview=view.findViewById(R.id.bio);
+        folcnt1=view.findViewById(R.id.folwnum1);
+        folcnt2=view.findViewById(R.id.folwnum2);
 
         logbtn=view.findViewById(R.id.logbtn);
         logbtnt=view.findViewById(R.id.logbtnt);
@@ -107,6 +109,8 @@ public class Profilefragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("users");
+
+
 
 
         //userId = getArguments() != null ? getArguments().getString("userID") : auth.getCurrentUser().getUid();
@@ -232,6 +236,8 @@ public class Profilefragment extends Fragment {
                     usr.setText(name + " " + surname);
                     emailTextView.setText(user.email);
                     bioview.setText(user.bio);
+                    folcnt1.setText(String.valueOf(user.followerscnt));
+                    folcnt2.setText(String.valueOf(user.followingcnt));
 
                     //profilis foto
                     String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ? user.imageUrl : defaultimg;

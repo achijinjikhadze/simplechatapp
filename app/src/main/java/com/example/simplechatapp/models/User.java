@@ -8,11 +8,14 @@ public class User {
     public String bio;
     public String status;
     public String imageUrl, coverurl;
+    public int followerscnt;
+    public int followingcnt;
+
 
 
     public User() {}
 
-    public User(String uid, String name, String surname, String email, String bio, String status, String imageUrl, String coverurl) {
+    public User(String uid, String name, String surname, String email, String bio, String status, String imageUrl, String coverurl, int followerscnt, int followingcnt) {
         this.uid = uid;
         this.name = name;
         this.surname = surname;
@@ -21,6 +24,8 @@ public class User {
         this.status = status;
         this.imageUrl = imageUrl;
         this.coverurl=coverurl;
+        this.followerscnt = followerscnt;
+        this.followingcnt = followingcnt;
     }
 }
 

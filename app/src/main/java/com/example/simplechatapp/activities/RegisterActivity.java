@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         String uid = auth.getCurrentUser().getUid();
-                        User user = new User(uid, name, surname, email, bio, "online", imageurl, coverurl);
+                        User user = new User(uid, name, surname, email, bio, "online", imageurl, coverurl, 0 ,0);
 
                         FirebaseDatabase.getInstance()
                                 .getReference("users")
