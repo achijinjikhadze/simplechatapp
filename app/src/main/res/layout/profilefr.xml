@@ -3,116 +3,126 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="@color/dark">
+    android:paddingTop="5dp"
+    android:background="@color/dark"
+    >
 
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/coverimg"
-        android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="-130dp"
         android:scaleType="centerCrop"
-        />
+        android:layout_marginBottom="-130dp"/>
 
     <FrameLayout
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginTop="50dp"
-        android:layout_gravity="center"
         android:layout_marginBottom="-10dp"
-        android:background="@drawable/round_border"
-        >
-
+        android:layout_marginStart="10dp"
+        android:background="@drawable/round_border">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
-            android:layout_gravity="center"
             android:layout_width="150dp"
             android:layout_height="150dp"
-
-            app:shapeAppearanceOverlay="@style/CircleImageView"
-            android:scaleType="centerCrop" />
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircleImageView"/>
     </FrameLayout>
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
         android:id="@+id/userid"
-        android:text=""
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
         android:textSize="30sp"
         android:textColor="@color/gold"
-        android:textStyle="bold"
-        android:fontFamily="@font/archivo"
-        android:layout_margin="10dp"/>
+        android:fontFamily="@font/googlesans"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp"/>
 
 
     <TextView
+        android:id="@+id/emailTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/emailTextView"
-        android:text=""
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/white"
-        android:padding="10dp"
-        android:layout_marginTop="-10dp"
-        android:layout_marginBottom="-10dp"/>
+        android:fontFamily="@font/googlesans"
+        android:paddingStart="20dp"
+        android:paddingBottom="0dp"/>
+    <TextView
+        android:id="@+id/bio"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="რაიმე ტექსტი ან სასურველი ინფორმაცია"
+        android:paddingLeft="20dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp"
-        android:padding="12dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:background="@drawable/profilerow"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            android:id="@+id/editname">
-            <ImageButton
+        android:orientation="horizontal"
+        android:padding="15dp">
 
+        <LinearLayout
+            android:id="@+id/editname"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/profilerow"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="10dp"
+            android:clickable="true">
+
+            <ImageButton
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@null"
                 android:src="@drawable/name"
                 app:tint="@color/gold"
                 android:clickable="false"/>
 
             <TextView
-                android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
-                android:text="სახელის რედაქტირება"
+                android:layout_height="10dp"
+                android:lineSpacingExtra="-1dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:text="ინფორმაციის შეცვლა"
+                android:gravity="center"
                 android:textColor="@color/gold"
-                android:textSize="17sp"
-                android:paddingLeft="10dp"
-                android:fontFamily="@font/agremyn"/>
-
+                android:textSize="16sp"
+                android:fontFamily="@font/googlesans"/>
         </LinearLayout>
 
-        <!---->
-
+        <!-- Change photo -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:id="@+id/editimgt"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_marginStart="5dp"
             android:background="@drawable/profilerow"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            android:id="@+id/editimgt">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
             <ImageButton
                 android:id="@+id/edimgbt"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@null"
                 android:src="@drawable/editimg"
                 app:tint="@color/gold"
@@ -121,30 +131,45 @@
             <TextView
                 android:id="@+id/editimg"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
                 android:text="ფოტოს შეცვლა"
+                android:gravity="center"
                 android:textColor="@color/gold"
-                android:textSize="17sp"
-                android:paddingLeft="10dp"/>
-
-
+                android:textSize="16sp"
+                android:fontFamily="@font/googlesans"/>
         </LinearLayout>
+    </LinearLayout>
 
-        <!---->
+    <!-- Second row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_marginTop="-5dp"
+        >
 
+        <!-- Change cover -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
+            android:id="@+id/editcov"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/profilerow"
-            android:layout_marginBottom="5dp"
-            android:clickable="true"
-            android:id="@+id/editcov">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
             <ImageButton
                 android:id="@+id/editc"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@null"
                 android:src="@drawable/edcv"
                 app:tint="@color/gold"
@@ -152,31 +177,34 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="ქოვერის შეცვლა"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textColor="@color/gold"
-                android:textSize="17sp"
-                android:paddingLeft="10dp"/>
-
-
+                android:textSize="16sp"
+                android:fontFamily="@font/googlesans"/>
         </LinearLayout>
 
-
-        <!---->
-
+        <!-- Logout -->
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
             android:id="@+id/logbtnt"
-            android:clickable="true"
-            android:background="@drawable/profilerow">
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/profilerow"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
 
             <ImageButton
                 android:id="@+id/logbtn"
                 android:layout_width="50dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:background="@null"
                 android:src="@drawable/logout"
                 app:tint="@color/gold"
@@ -185,15 +213,16 @@
             <TextView
                 android:id="@+id/logout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start|center_vertical"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:text="გამოსვლა"
+                android:textStyle="bold"
+                android:gravity="center"
                 android:textColor="@color/gold"
-                android:textSize="17sp"
-                android:paddingLeft="10dp"/>
-
-
+                android:textSize="16sp"
+                android:fontFamily="@font/googlesans"/>
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

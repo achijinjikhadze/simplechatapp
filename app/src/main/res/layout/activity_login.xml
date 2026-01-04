@@ -18,27 +18,29 @@
             android:text="შესვლა"
             android:gravity="center"
             android:lineSpacingExtra="20dp"
-            android:textSize="35dp"
+            android:textSize="40dp"
             android:textColor="@color/gold"
             android:textStyle="bold"
-            android:fontFamily="monospace"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/googlesans"
+            />
 
+        <!--თუ არ გაქვს, შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა-->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="თუ არ გაქვს, შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა"
+            android:text="Tu ar gaqvs, Seqmeni angariSi rom SeZlo sxvebTan mimowera"
             android:gravity="center"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textColor="@color/white"
             android:paddingLeft="20dp"
-            android:fontFamily="monospace"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/migdebuli"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <EditText
@@ -48,6 +50,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/eddittext_bg"
                 android:hint="ელფოსტა"
+                android:fontFamily="@font/googlesans"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/gold"
                 android:textColorHint="@color/gold" />
@@ -61,6 +64,7 @@
                 android:inputType="textPassword"
                 android:layout_marginTop="12dp"
                 android:textColor="@color/gold"
+                android:fontFamily="@font/googlesans"
                 android:textColorHint="@color/gold"
                 android:background="@drawable/eddittext_bg"/>
 
@@ -73,16 +77,24 @@
                 android:focusable="true"
                 android:gravity="right"
                 android:text="დაგავიწყდა პაროლი?"
-                android:textColor="@color/gold" />
+                android:textColor="@color/gold"
+                android:fontFamily="@font/googlesans"
+                android:textSize="16sp"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnlogin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/logbtn"
                 android:text="შესვლა"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                android:fontFamily="@font/googlesans"
+                android:background="@drawable/logbtn"
+                android:gravity="center"/>
+
 
             <TextView
                 android:id="@+id/newacc"
@@ -93,7 +105,9 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="შექმენი ახალი ანგარიში"
-                android:textColor="@color/gold" />
+                android:textColor="@color/gold"
+                android:fontFamily="@font/googlesans"
+                android:textSize="16sp"/>
 
         </LinearLayout>
 

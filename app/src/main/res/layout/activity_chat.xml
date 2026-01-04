@@ -45,7 +45,6 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-
                 android:id="@+id/profileimg"
                 android:layout_gravity="center"/>
         </FrameLayout>

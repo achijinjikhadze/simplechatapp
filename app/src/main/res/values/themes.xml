@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/gold</item>
         <item name="colorSecondary">@color/white</item>-->
 
+
+            <item name="android:fontFamily">@font/googlesans</item>
+            <item name="fontFamily">@font/googlesans</item>
+
+
     </style>
 
 

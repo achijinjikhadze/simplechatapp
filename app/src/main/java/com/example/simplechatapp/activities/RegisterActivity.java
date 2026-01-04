@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText etname, etemail, etpassword, etpassword2;
+    private EditText etname, etemail, etpassword, etpassword2, etsurname;
     private Button etregister;
     private TextView oldacc;
 
@@ -37,10 +37,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         oldacc=findViewById(R.id.oldacc);
         etname = findViewById(R.id.etname);
+        etsurname =findViewById(R.id.etsurname);
         etemail = findViewById(R.id.etemail);
         etpassword = findViewById(R.id.etpassword);
         etpassword2 = findViewById(R.id.etpassword2);
         etregister = findViewById(R.id.btnregister);
+        //String etbio="";
 
 
         etregister.setOnClickListener(v -> {
@@ -81,10 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void registerUser() {
         String name = etname.getText().toString().trim();
+        String surname= etsurname.getText().toString().trim();
         String email = etemail.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
         String imageurl = "https://i.ibb.co/cc3bQ1Qk/user.jpg";
         String coverurl = "https://i.ibb.co/cc3bQ1Qk/user.jpg";
+        String bio="";
 
 
         if (TextUtils.isEmpty(name) ||
@@ -100,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
 
                         String uid = auth.getCurrentUser().getUid();
-                        User user = new User(uid, name, email, "online", imageurl, coverurl);
+                        User user = new User(uid, name, surname, email, bio, "online", imageurl, coverurl);
 
                         FirebaseDatabase.getInstance()
                                 .getReference("users")

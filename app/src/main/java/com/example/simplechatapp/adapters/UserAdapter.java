@@ -65,11 +65,14 @@ public class UserAdapter extends BaseAdapter {
 
         User user = users.get(position);
 
-        tvName.setText(user.name);
+        //tu gvari araaq carieli simbolo
+        String name = (user.name != null) ? user.name : " ";
+        String surname = (user.surname != null) ? user.surname : " ";
+        tvName.setText(name + " " + surname);
+        //tvName.setText(user.name);
         tvStatus.setText(user.status);
 
-        String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ?
-                user.imageUrl : "@drawable/user";
+        String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ? user.imageUrl : "@drawable/user";
 
         Glide.with(context)
                 .load(imageUrl)
