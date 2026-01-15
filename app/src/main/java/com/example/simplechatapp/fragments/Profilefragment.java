@@ -35,6 +35,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.activities.FirstActivity;
+import com.example.simplechatapp.activities.FullScreenImageActivity;
 import com.example.simplechatapp.activities.Profileactivity;
 import com.example.simplechatapp.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -246,8 +247,6 @@ public class Profilefragment extends Fragment {
 
                     Glide.with(requireContext())
                             .load(imageUrl)
-
-
                             .circleCrop()
                             .diskCacheStrategy(DiskCacheStrategy.ALL)
                             .into(profileimg);
@@ -258,8 +257,18 @@ public class Profilefragment extends Fragment {
 
                     Glide.with(requireContext())
                             .load(coverImageUrl)
-
                             .into(coverimg);
+
+                    profileimg.setOnClickListener(v -> {
+                        Intent intent = new Intent(requireContext(), FullScreenImageActivity.class);
+                        intent.putExtra("imageUrl", imageUrl);
+                        requireContext().startActivity(intent);
+                    });
+                    coverimg.setOnClickListener(v -> {
+                        Intent intent = new Intent(requireContext(), FullScreenImageActivity.class);
+                        intent.putExtra("imageUrl", coverImageUrl);
+                        requireContext().startActivity(intent);
+                    });
 
                 }
             }
@@ -271,7 +280,7 @@ public class Profilefragment extends Fragment {
         });
     }
 
-    //profilis fotos dayeneba serveridan url
+    //profilis fotos atvritva serverze da dayeneba (suratis linki)
     private void uploadImageToImgbb(Uri uri) {
         if (uri == null) return;
 

@@ -8,49 +8,23 @@
     android:background="@color/dark">
 
 
+
+
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" >
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
 
+        <ListView
+            android:id="@+id/listViewUsers"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:layout_height="100dp"
+            android:divider="@null"
+            android:padding="0dp"
             />
 
-        <Button
-            android:id="@+id/btngoreg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Register"
-          />
-
-        <Button
-            android:id="@+id/btngolog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="login"
-            />
-
-        <Button
-            android:id="@+id/btnusr"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="users" />
-
-        </LinearLayout>
     </FrameLayout>
 
 
@@ -75,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/cclogo"
+            android:src="@drawable/smlogo"
             android:background="@null"
             app:tint="@color/icon_selector"/>
 
@@ -98,10 +72,10 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/w"
+            android:id="@+id/notf"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:src="@drawable/cclogo"
+            android:src="@drawable/notif"
             android:layout_weight="1"
             android:background="@null"
             app:tint="@color/icon_selector"/>

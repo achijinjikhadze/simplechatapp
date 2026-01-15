@@ -13,9 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.activities.ChatActivity;
 import com.example.simplechatapp.activities.LoginActivity;
+import com.example.simplechatapp.activities.Profileactivity;
 import com.example.simplechatapp.adapters.UserAdapter;
 import com.example.simplechatapp.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,7 +54,7 @@ public class Chatusersfragment extends Fragment {
         usersRef = FirebaseDatabase.getInstance().getReference("users");
 
         usersList = new ArrayList<>();
-        adapter = new UserAdapter(getContext(), usersList, user -> openChat(user));
+        adapter = new UserAdapter(getContext(), usersList, user -> openprof(user));
         listView.setAdapter(adapter);
 
         loadUsers();
@@ -60,6 +62,13 @@ public class Chatusersfragment extends Fragment {
 
 
         return view;
+    }
+
+    private void openprof(User user) {
+        Intent intent = new Intent(getActivity(), Profileactivity.class);
+        intent.putExtra("userId", user.uid);
+        intent.putExtra("userName", user.name);
+        startActivity(intent);
     }
 
     //userebis listi

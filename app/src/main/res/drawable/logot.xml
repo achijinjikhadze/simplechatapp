@@ -3,23 +3,23 @@
     <group>
             
         <clip-path android:pathData="M0,0l300,0l0,300l-300,0z"/>
-            
+
         <path android:fillType="nonZero" android:pathData="M142.93,162.62c-5.57,6.34 -16.72,5.96 -21.73,-0.88c-2.37,-3.24 -3.55,-6.98 -2.97,-10.99c0.52,-3.8 2.55,-7.24 5.62,-9.53c2.86,-2.09 6.95,-3.19 10.46,-2.66c0.31,0.22 0.58,0.41 0.9,0.62c0.29,1.74 0.09,4.13 -0.68,5.74l-0.42,0.19c-0.75,-0.05 -1.41,-0.09 -2.16,-0.05c-6.64,0.37 -9.56,8.21 -5.15,13.01c1.43,1.52 3.42,2.4 5.51,2.43c2.51,0.04 3.91,-0.86 5.82,-2.24c-0.54,1.21 -1.24,1.02 -1.79,1.73c-0.72,0.96 0.62,3.04 0.39,4.14c-0.05,0.42 -0.05,1.46 0.12,1.81c1.57,0.37 4.54,-2.9 6.07,-3.33z" android:strokeColor="#00000000" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeWidth="1">
-                  
+
             <aapt:attr name="android:fillColor">
-                        
+
                 <gradient android:endX="136.57" android:endY="152.27" android:startX="118.37" android:startY="154.23" android:type="linear">
-                              
+
                     <item android:color="#FFBC8531" android:offset="0"/>
-                              
+
                     <item android:color="#FFEDC365" android:offset="1"/>
-                            
+
                 </gradient>
-                      
+
             </aapt:attr>
-                
+
         </path>
-            
+
         <path android:fillType="nonZero" android:pathData="M160.92,138.93c3.49,-1.11 7.51,-0.52 10.72,1.16c3.36,1.74 5.88,4.76 6.97,8.39c1.18,3.75 0.8,7.82 -1.05,11.29c-1.72,3.27 -4.69,5.7 -8.23,6.75c-3.25,0.99 -6.35,0.79 -9.54,-0.26c0.22,-0.03 0.77,-0.1 0.81,-0.22c0.35,-0.98 1.12,-5.33 1.19,-6.16c2.14,0.7 4.39,1.03 6.45,-0.09c9.93,-5.39 1.91,-18.88 -7.92,-13.46c0.98,-1.8 3.55,-1.1 4.94,-1.77c0.31,-0.81 -0.46,-1.52 0,-2.65c0.25,-0.63 0.52,-2.36 0.64,-3.08c-1.62,-0.67 -3.43,0.42 -4.99,0.11z" android:strokeColor="#00000000" android:strokeLineCap="butt" android:strokeLineJoin="miter" android:strokeWidth="1">
                   
             <aapt:attr name="android:fillColor">
