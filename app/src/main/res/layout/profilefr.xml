@@ -3,17 +3,33 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="5dp"
+
     android:background="@color/dark"
     >
 
+    <LinearLayout
+        android:layout_marginTop="-5dp"
+        android:padding="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ჩემი პროფილი"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/gugs"
+            android:textColor="@color/gold"/>
+    </LinearLayout>
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/coverimg"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:layout_marginBottom="-130dp"/>
+        android:layout_marginBottom="-130dp"
+        android:layout_marginTop="-2dp"/>
 
     <FrameLayout
         android:layout_width="160dp"

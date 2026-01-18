@@ -61,14 +61,14 @@
             android:textColor="@color/dark"
             android:textStyle="bold"
             android:textSize="16sp"
-            android:fontFamily="@font/googlesans"/>
+            android:fontFamily="@font/gugs"/>
 
 
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:text="რეგისტაცია"
+            android:text="რეგისტრაცია"
             android:background="@drawable/regbtn"
             android:layout_marginStart="5dp"
             android:textStyle="bold"
@@ -76,7 +76,7 @@
             android:textColor="@color/gold"
             android:id="@+id/regbtn"
             android:textSize="16dp"
-            android:fontFamily="@font/googlesans"
+            android:fontFamily="@font/gugs"
             />
 
     </LinearLayout>

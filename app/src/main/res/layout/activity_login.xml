@@ -22,7 +22,7 @@
             android:textColor="@color/gold"
             android:textStyle="bold"
             android:layout_marginTop="50dp"
-            android:fontFamily="@font/googlesans"
+            android:fontFamily="@font/gugs"
             />
 
         <!--თუ არ გაქვს, შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა-->
@@ -78,7 +78,7 @@
                 android:gravity="right"
                 android:text="დაგავიწყდა პაროლი?"
                 android:textColor="@color/gold"
-                android:fontFamily="@font/googlesans"
+                android:fontFamily="@font/gug2"
                 android:textSize="16sp"/>
 
             <com.google.android.material.button.MaterialButton
@@ -91,7 +91,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:backgroundTint="@null"
-                android:fontFamily="@font/googlesans"
+                android:fontFamily="@font/gugs"
                 android:background="@drawable/logbtn"
                 android:gravity="center"/>
 
@@ -106,7 +106,7 @@
                 android:gravity="center"
                 android:text="შექმენი ახალი ანგარიში"
                 android:textColor="@color/gold"
-                android:fontFamily="@font/googlesans"
+                android:fontFamily="@font/gug2"
                 android:textSize="16sp"/>
 
         </LinearLayout>

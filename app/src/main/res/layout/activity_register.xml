@@ -16,7 +16,7 @@
         android:textSize="40dp"
         android:textColor="@color/gold"
         android:textStyle="bold"
-        android:fontFamily="@font/googlesans"
+        android:fontFamily="@font/gugs"
         android:layout_marginTop="50dp"
         />
 <!--შექმენი ანგარიში რომ შეძლო სხვებთან მიმოწერა-->
@@ -110,7 +110,7 @@
             android:textStyle="bold"
             app:backgroundTint="@null"
             android:background="@drawable/logbtn"
-            android:fontFamily="@font/googlesans"
+            android:fontFamily="@font/gugs"
             android:gravity="center"/>
 
         <TextView
@@ -124,6 +124,6 @@
             android:focusable="true"
             android:id="@+id/oldacc"
             android:textSize="16sp"
-            android:fontFamily="@font/googlesans"/>
+            android:fontFamily="@font/gug2"/>
     </LinearLayout>
 </LinearLayout>

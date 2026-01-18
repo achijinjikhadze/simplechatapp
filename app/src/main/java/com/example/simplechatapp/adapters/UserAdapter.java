@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -18,6 +20,8 @@ public class UserAdapter extends BaseAdapter {
 
     private ArrayList<User> users;
     private Context context;
+
+    private String myUid;
 
 
     //activitys gadavcemt useris objects
@@ -32,6 +36,8 @@ public class UserAdapter extends BaseAdapter {
         this.context = context;
         this.users = users;
         this.listener = listener;
+
+        myUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     @Override
@@ -61,6 +67,8 @@ public class UserAdapter extends BaseAdapter {
 
         TextView tvName = convertView.findViewById(R.id.tvUserName);
         TextView tvStatus = convertView.findViewById(R.id.tvStatus);
+
+        TextView bullet = convertView.findViewById(R.id.bult);
         ImageView ivProfile = convertView.findViewById(R.id.profileImage);
 
         User user = users.get(position);
@@ -71,6 +79,9 @@ public class UserAdapter extends BaseAdapter {
         tvName.setText(name + " " + surname);
         //tvName.setText(user.name);
         tvStatus.setText(user.status);
+
+
+        String chatId = myUid.compareTo(user.uid) < 0 ? myUid + "_" + user.uid : user.uid + "_" + myUid;
 
         String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ? user.imageUrl : "@drawable/user";
 
@@ -87,6 +98,32 @@ public class UserAdapter extends BaseAdapter {
                 listener.onUserClick(user);
             }
         });
+
+
+        //tu nanaxi ar gvaq bulleti iqneba usertan
+        FirebaseDatabase.getInstance().getReference("chats")
+                .child(chatId)
+                .orderByChild("timestamp")
+                .limitToLast(1)
+                .addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(@androidx.annotation.NonNull com.google.firebase.database.DataSnapshot snapshot) {
+                        boolean unread = false;
+                        for (com.google.firebase.database.DataSnapshot snap : snapshot.getChildren()) {
+                            com.example.simplechatapp.models.Message lastMessage = snap.getValue(com.example.simplechatapp.models.Message.class);
+                            if (lastMessage != null) {
+
+                                if (!lastMessage.senderId.equals(myUid) && !lastMessage.seen) {
+                                    unread = true;
+                                }
+                            }
+                        }
+                        bullet.setVisibility(unread ? View.VISIBLE : View.GONE);
+                    }
+
+                    @Override
+                    public void onCancelled(@androidx.annotation.NonNull com.google.firebase.database.DatabaseError error) {}
+                });
 
         return convertView;
     }

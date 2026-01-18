@@ -1,11 +1,9 @@
 package com.example.simplechatapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,9 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.simplechatapp.activities.LoginActivity;
-import com.example.simplechatapp.activities.RegisterActivity;
-import com.example.simplechatapp.activities.UsersActivity;
+//import com.example.simplechatapp.activities.UsersActivity;
 import com.example.simplechatapp.adapters.UserAdapter;
 import com.example.simplechatapp.fragments.ChatsFragment;
 import com.example.simplechatapp.fragments.Chatusersfragment;

@@ -1,4 +1,5 @@
-package com.example.simplechatapp.activities;
+/*
+* package com.example.simplechatapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class UsersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_users);
+       // setContentView(R.layout.activity_users);
         EdgeToEdge.enable(this);
 
         listView = findViewById(R.id.listViewUsers);
@@ -82,35 +83,42 @@ public class UsersActivity extends AppCompatActivity {
 
                /* Toast.makeText(UsersActivity.this,
                         "მომხმარებლები: " + usersList.size(),
-                        Toast.LENGTH_SHORT).show();*/
+                        Toast.LENGTH_SHORT).show();
 
-                adapter.notifyDataSetChanged();
+import android.content.Intent;
+import android.widget.Toast;
+
+import com.example.simplechatapp.activities.ChatActivity;
+import com.example.simplechatapp.activities.LoginActivity;
+import com.example.simplechatapp.models.User;
+import com.google.firebase.database.DatabaseError;adapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Toast.makeText(UsersActivity.this,
-                        "Failed to load users", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    //chatis intenti
-    private void openChat(User user) {
-        Intent intent = new Intent(this, ChatActivity.class);
-        intent.putExtra("userId", user.uid);
-        intent.putExtra("userName", user.name);
-        startActivity(intent);
-    }
-
-    //gamosvla
-    private void logout() {
-        usersRef.child(auth.getCurrentUser().getUid())
-                .child("status")
-                .setValue("offline");
-
-        auth.signOut();
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-    }
+@Override
+public void onCancelled(DatabaseError error) {
+    Toast.makeText(UsersActivity.this,
+            "Failed to load users", Toast.LENGTH_SHORT).show();
 }
+        });
+                }
+
+//chatis intenti
+private void openChat(User user) {
+    Intent intent = new Intent(this, ChatActivity.class);
+    intent.putExtra("userId", user.uid);
+    intent.putExtra("userName", user.name);
+    startActivity(intent);
+}
+
+//gamosvla
+private void logout() {
+    usersRef.child(auth.getCurrentUser().getUid())
+            .child("status")
+            .setValue("offline");
+
+    auth.signOut();
+    startActivity(new Intent(this, LoginActivity.class));
+    finish();
+}
+}
+*/
