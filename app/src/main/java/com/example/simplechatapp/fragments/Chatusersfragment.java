@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,9 +33,10 @@ import java.util.ArrayList;
 public class Chatusersfragment extends Fragment {
 
     private ListView listView;
-    private ArrayList<User> usersList;
+    private ArrayList<User> usersList, allusers;
     private UserAdapter adapter;
     private Button btnLogout;
+    private EditText search;
 
     private FirebaseAuth auth;
     private DatabaseReference usersRef;
@@ -48,12 +50,26 @@ public class Chatusersfragment extends Fragment {
         View view = inflater.inflate(R.layout.chatusersfr, container, false);
 
         listView = view.findViewById(R.id.listViewUsers);
+        search=view.findViewById(R.id.editTextSearch);
+        search.addTextChangedListener(new android.text.TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterUsers(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(android.text.Editable s) {}
+        });
 
         auth = FirebaseAuth.getInstance();
         usersRef = FirebaseDatabase.getInstance().getReference("users");
 
+
         usersList = new ArrayList<>();
+        allusers = new ArrayList<>();
         adapter = new UserAdapter(getContext(), usersList, user -> openprof(user));
         listView.setAdapter(adapter);
 
@@ -77,7 +93,8 @@ public class Chatusersfragment extends Fragment {
             //roca data sheicvleba
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                usersList.clear(); ; //dublirebis asacileblad listis gasuftaveba
+                usersList.clear();; //dublirebis asacileblad listis gasuftaveba
+                allusers.clear();
                 String currentUid = auth.getCurrentUser().getUid();
 
                 //listis loopi
@@ -85,6 +102,7 @@ public class Chatusersfragment extends Fragment {
                     User user = ds.getValue(User.class);
                     if (user != null && !user.uid.equals(currentUid)) { //axlandeli useri ar chans
                         usersList.add(user);
+                        allusers.add(user);
                     }
                 }
 
@@ -101,6 +119,22 @@ public class Chatusersfragment extends Fragment {
                         "Failed to load users", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void filterUsers(String query){
+        usersList.clear();
+        if (query.isEmpty()){
+            usersList.addAll(allusers);//tu dzebna carielia yvela gamochndeba
+        } else{
+            query = query.toLowerCase();
+            for (User user : allusers) {
+                if (user.name.toLowerCase().contains(query)) { //tuarada romelic moidzebnema am stringit is gamochndes
+                    usersList.add(user);
+                }
+            }
+        }
+
+        adapter.notifyDataSetChanged();
     }
 
     //chatis intenti

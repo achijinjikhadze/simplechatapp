@@ -301,8 +301,20 @@ public class ChatActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                          //chatindex cxrilshi davamatot es userebis
-                        chatindexref.child(senderId).child(receiverId).setValue(true);
-                        chatindexref.child(receiverId).child(senderId).setValue(true);
+                       // chatindexref.child(senderId).child(receiverId).setValue(true);
+                        //  chatindexref.child(receiverId).child(senderId).setValue(true);
+
+                        long timestamplast = System.currentTimeMillis();
+
+
+                        chatindexref.child(senderId).child(receiverId).child("exists").setValue(true);
+                        chatindexref.child(senderId).child(receiverId).child("timestamp").setValue(timestamplast);
+
+
+                        chatindexref.child(receiverId).child(senderId).child("exists").setValue(true);
+                        chatindexref.child(receiverId).child(senderId).child("timestamp").setValue(timestamplast);
+
+
                         etMessage.setText("");
                         imagePicked = false;
                     } else {

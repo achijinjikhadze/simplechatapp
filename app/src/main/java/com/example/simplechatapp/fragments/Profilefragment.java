@@ -143,7 +143,20 @@ public class Profilefragment extends Fragment {
 
         loadCurrentUser();
 
-        logbtnt.setOnClickListener(v -> logout());
+        logbtnt.setOnClickListener(v -> {
+
+            new androidx.appcompat.app.AlertDialog.Builder(getActivity())
+                    .setTitle("გამოსვლა")
+                    .setMessage("ნამდვილად გინდათ გამოსვლა?")
+                    .setPositiveButton("დიახ", (dialog, which) -> {
+                        logout();
+                    })
+                    .setNegativeButton("არა", (dialog, which) -> {
+                        dialog.dismiss();
+                    })
+                    .show();
+        });
+
 
         //saxelis shecvlis dialog
         edtname.setOnClickListener(v -> {
