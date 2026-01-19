@@ -94,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(name) ||
                 TextUtils.isEmpty(email) ||
                 TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "All fields required", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "შეავსე ყველა", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -113,12 +113,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 .addOnCompleteListener(dbTask -> {
                                     if (dbTask.isSuccessful()) {
                                         Toast.makeText(this,
-                                                "Registration successful",
+                                                "წარმატებით დარეგისტრირდი",
                                                 Toast.LENGTH_SHORT).show();
                                         finish();
                                     } else {
                                         Toast.makeText(this,
-                                                "Database error",
+                                                "შეცდომა",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 });

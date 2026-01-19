@@ -116,7 +116,7 @@ public class Chatusersfragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(),
-                        "Failed to load users", Toast.LENGTH_SHORT).show();
+                        "შეცდომა", Toast.LENGTH_SHORT).show();
             }
         });
     }

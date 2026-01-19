@@ -223,7 +223,7 @@ public class Profilefragment extends Fragment {
                         }
                     } else {
                         Toast.makeText(getContext(),
-                                "Gallery permission denied",
+                                "გალერიის უფლება უარყოფილია",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -256,7 +256,7 @@ public class Profilefragment extends Fragment {
                     //profilis foto
                     String imageUrl = (user.imageUrl != null && !user.imageUrl.isEmpty()) ? user.imageUrl : defaultimg;
 
-                    Log.d("ProfileFragment", "Profile Image URL: " + imageUrl);
+
 
                     Glide.with(requireContext())
                             .load(imageUrl)
@@ -288,7 +288,7 @@ public class Profilefragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to load user", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "შეცდომა", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -315,7 +315,7 @@ public class Profilefragment extends Fragment {
                     .build();
 
             Request request = new Request.Builder()
-                    .url("https://i.ibb.co/cc3bQ1Qk/user.jpg")
+                    .url("https://api.imgbb.com/1/upload")
                     .post(formBody)
                     .build();
 
@@ -323,7 +323,7 @@ public class Profilefragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     requireActivity().runOnUiThread(() ->
-                            Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getContext(), "ვერ აიტვირთა: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                     );
                 }
 
@@ -332,7 +332,7 @@ public class Profilefragment extends Fragment {
                     try {
                         if (!response.isSuccessful() || response.body() == null) {
                             requireActivity().runOnUiThread(() ->
-                                    Toast.makeText(getContext(), "Upload failed", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(getContext(), "ვერ აიტვირთა", Toast.LENGTH_SHORT).show()
                             );
                             return;
                         }
@@ -342,21 +342,21 @@ public class Profilefragment extends Fragment {
                         org.json.JSONObject data = obj.getJSONObject("data");
                         String imageUrl = data.getString("display_url");
 
-                        Log.d("ProfileFragment", "Uploaded Image URL: " + imageUrl);
+
 
                         String uid = auth.getCurrentUser().getUid();
                         usersRef.child(uid).child("imageUrl").setValue(imageUrl);
 
                     } catch (Exception e) {
                         requireActivity().runOnUiThread(() ->
-                                Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(getContext(), "ვერ აიტვირთა: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
                     }
                 }
             });
 
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Image error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "შეცდომა: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -415,7 +415,7 @@ public class Profilefragment extends Fragment {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
                     requireActivity().runOnUiThread(() ->
-                            Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                            Toast.makeText(getContext(), "ვერ აიტვირთა: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                     );
                 }
 
@@ -424,7 +424,7 @@ public class Profilefragment extends Fragment {
                     try {
                         if (!response.isSuccessful() || response.body() == null) {
                             requireActivity().runOnUiThread(() ->
-                                    Toast.makeText(getContext(), "Upload failed", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(getContext(), "ვერ აიტვირთა", Toast.LENGTH_SHORT).show()
                             );
                             return;
                         }
@@ -434,21 +434,21 @@ public class Profilefragment extends Fragment {
                         org.json.JSONObject data = obj.getJSONObject("data");
                         String imageUrl = data.getString("display_url");
 
-                        Log.d("ProfileFragment", "Uploaded Cover Image URL: " + imageUrl);
+
 
                         String uid = auth.getCurrentUser().getUid();
                         usersRef.child(uid).child("coverurl").setValue(imageUrl);
 
                     } catch (Exception e) {
                         requireActivity().runOnUiThread(() ->
-                                Toast.makeText(getContext(), "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(getContext(), "ვერ აიტვირთა: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                         );
                     }
                 }
             });
 
         } catch (Exception e) {
-            Toast.makeText(getContext(), "Image error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "შეცდომა: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

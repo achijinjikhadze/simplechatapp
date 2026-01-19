@@ -35,6 +35,7 @@ import com.example.simplechatapp.MainActivity;
 import com.example.simplechatapp.R;
 import com.example.simplechatapp.adapters.MessageAdapter;
 import com.example.simplechatapp.models.Message;
+import com.example.simplechatapp.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -62,7 +63,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private ActivityResultLauncher<String> permissionLauncher, camerapermissionalauncher;
     private ListView listView;
-    private TextView usrname;
+    private TextView usrname, status;
     private EditText etMessage;
     private Button btnSend;
     private ImageButton btnSend2, back, camera, photo, voice, icshow, msdel;
@@ -102,6 +103,7 @@ public class ChatActivity extends AppCompatActivity {
         chatuser = findViewById(R.id.chatuser);
 
 
+
         auth = FirebaseAuth.getInstance();
         senderId = auth.getCurrentUser().getUid();
         receiverId = getIntent().getStringExtra("userId");
@@ -109,6 +111,8 @@ public class ChatActivity extends AppCompatActivity {
 
         usrname = findViewById(R.id.tvUserName);
         usrname.setText(receiverName);
+        status = findViewById(R.id.tvStatus);
+        loadReceiverStatus();
 
         setTitle(receiverName);
 
@@ -415,14 +419,14 @@ public class ChatActivity extends AppCompatActivity {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(ChatActivity.this, "ვერ აიტვრიტა: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                 }
 
                 @Override
                 public void onResponse(@NonNull Call call, @NonNull Response response) {
                     try {
                         if (!response.isSuccessful() || response.body() == null) {
-                            runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Upload failed", Toast.LENGTH_SHORT).show());
+                            runOnUiThread(() -> Toast.makeText(ChatActivity.this, "ვერ აიტვირთა", Toast.LENGTH_SHORT).show());
                             return;
                         }
 
@@ -435,12 +439,38 @@ public class ChatActivity extends AppCompatActivity {
                         sendMessage();
 
                     } catch (Exception e) {
-                        runOnUiThread(() -> Toast.makeText(ChatActivity.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                        runOnUiThread(() -> Toast.makeText(ChatActivity.this, "ვერ აიტვირთა: " + e.getMessage(), Toast.LENGTH_SHORT).show());
                     }
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(ChatActivity.this, "Image error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(ChatActivity.this, "შეცდომა: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
+
+    //onlinea tu offline
+    private void loadReceiverStatus() {
+        DatabaseReference ref = FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(receiverId);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot s) {
+                String st = s.child("status").getValue(String.class);
+
+                if ("online".equals(st)) {
+                    status.setText("online");
+                    status.setTextColor(getColor(R.color.green));
+                } else {
+                    status.setText("offline");
+                    status.setTextColor(getColor(R.color.grey));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError e) {}
+        });
+    }
+
 }

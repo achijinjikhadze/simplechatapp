@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
     private DatabaseReference usersRef;
+    private DatabaseReference userStatusRef;
 
 
     private Button regbtn, logbtn, usrbtn;
@@ -64,7 +65,11 @@ public class MainActivity extends AppCompatActivity {
         adapter = new UserAdapter(this, usersList, null);
         listView.setAdapter(adapter);
 
-        loadUsers();
+
+        onlofn();
+
+        // loadUsers();
+
 
 
       //navigation butonebi
@@ -143,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    private void loadUsers() {
+    /*private void loadUsers() {
         usersRef.addValueEventListener(new ValueEventListener() {
             //roca data sheicvleba
             @Override
@@ -163,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
                 /*Toast.makeText(getContext(),
                         "მომხმარებლები: " + usersList.size(),
-                        Toast.LENGTH_SHORT).show();*/
+                        Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -172,5 +177,34 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    */
+
+    private void onlofn() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance()
+                .getReference("users")
+                .child(uid);
+
+        DatabaseReference connectedRef =
+                FirebaseDatabase.getInstance().getReference(".info/connected");
+
+        connectedRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Boolean connected = snapshot.getValue(Boolean.class);
+                if (connected != null && connected) {
+                    userRef.child("status").setValue("online");
+
+                    userRef.child("status").onDisconnect().setValue("offline");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
+    }
+
+
 }
 

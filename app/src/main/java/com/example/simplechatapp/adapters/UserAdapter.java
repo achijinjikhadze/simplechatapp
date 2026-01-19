@@ -79,6 +79,12 @@ public class UserAdapter extends BaseAdapter {
         tvName.setText(name + " " + surname);
         //tvName.setText(user.name);
         tvStatus.setText(user.status);
+        if(user.status.equals("offline")){
+            tvStatus.setTextColor(context.getColor(R.color.grey));
+        }
+        if(user.status.equals("online")){
+            tvStatus.setTextColor(context.getColor(R.color.green));
+        }
 
 
         String chatId = myUid.compareTo(user.uid) < 0 ? myUid + "_" + user.uid : user.uid + "_" + myUid;
