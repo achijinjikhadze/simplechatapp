@@ -145,6 +145,8 @@ public class Profilefragment extends Fragment {
 
         logbtnt.setOnClickListener(v -> {
 
+            if (!isAdded()) return;
+
             new androidx.appcompat.app.AlertDialog.Builder(getActivity())
                     .setTitle("გამოსვლა")
                     .setMessage("ნამდვილად გინდათ გამოსვლა?")
@@ -454,12 +456,27 @@ public class Profilefragment extends Fragment {
 
 
     private void logout() {
-        usersRef.child(auth.getCurrentUser().getUid())
+        /*usersRef.child(auth.getCurrentUser().getUid())
                 .child("status")
                 .setValue("offline");
 
         auth.signOut();
-        startActivity(new Intent(getActivity(), FirstActivity.class));
-        getActivity().finish();
+        */
+        //daayenos offlineze da gavides
+        usersRef.child(auth.getCurrentUser().getUid()).child("status").setValue("offline")
+                .addOnCompleteListener(task -> {
+                    //gasvla
+                    auth.signOut();
+
+                    //acitivtize gadasv;a
+                    if (isAdded()) {
+                        startActivity(new Intent(requireActivity(), FirstActivity.class));
+                        requireActivity().finish();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(getContext(), "შეცდომა: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
     }
 }
