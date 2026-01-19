@@ -86,8 +86,8 @@ public class RegisterActivity extends AppCompatActivity {
         String surname= etsurname.getText().toString().trim();
         String email = etemail.getText().toString().trim();
         String password = etpassword.getText().toString().trim();
-        String imageurl = "https://i.ibb.co/cc3bQ1Qk/user.jpg";
-        String coverurl = "https://i.ibb.co/cc3bQ1Qk/user.jpg";
+        String imageurl = "https://i.ibb.co/ymhV9WVb/2clrlogo2.png";
+        String coverurl = "https://i.ibb.co/N2y52dMT/Cover.png";
         String bio="";
 
 
